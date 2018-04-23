@@ -14,12 +14,9 @@ func _grab_pressed():
 
 	var image = get_viewport().get_texture().get_data()
 	image.flip_y()
-
-	image.save_png('screenshot.png')
+	screenshot_resource = ImageTexture.new()
+	screenshot_resource.create_from_image(image)
 	
 func _place_pressed():
-	screenshot_resource = ImageTexture.new()
-	screenshot_resource.load('screenshot.png')
-	
 	if (screenshot_resource):
 		$ScreenshotTarget.set_texture(screenshot_resource)
