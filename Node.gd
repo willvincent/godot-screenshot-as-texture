@@ -1,6 +1,7 @@
 extends Node
 
 var screenshot_resource
+var clicked = 0
 
 func _ready():
 	$Grab.connect('pressed', self, '_grab_pressed')
@@ -8,6 +9,9 @@ func _ready():
 
 
 func _grab_pressed():
+	clicked += 1
+	$Label.text = str('Grabbed %d times' % [clicked])
+	yield(get_tree(), 'idle_frame')
 	var image = get_viewport().get_texture().get_data()
 	image.flip_y()
 
